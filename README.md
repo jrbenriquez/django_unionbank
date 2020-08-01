@@ -8,7 +8,7 @@ Quick Start
 
 0. To install, use pip::
 
-    pip install django_unionbank
+        pip install django_unionbank
 
 1. Add django_unionbank to you INSTALLED_APPS settings like this:
         
