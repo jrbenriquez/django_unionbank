@@ -31,7 +31,7 @@ Quick Start
         UNIONBANK_PASSWORD=<REPLACE PASSWORD>
 
 
-3. Library allows you to have certain models used for SandBox Accounts, Keeping a copy of the Instapay and PESONet banks available. For now, saving data in the database is required to function. To do this:
+3. Library allows you to have certain models used to save FundTransfer Data,  SandBox Accounts, Data of Instapay and PESONet banks available. For now, saving data in the database is required to function. To do this:
 
         python manage.py migrate django_unionbank
 
@@ -45,7 +45,7 @@ Usage
     
         from django_unionbank.api.identity.partner_funds_transfer
         
-        partner_funds_transfer(token, account_number, amount, remarks="Partner Payout")
+        transfer, message = partner_funds_transfer(token, account_number, amount, remarks="Partner Payout")
 
     Parameters:
     
@@ -56,6 +56,9 @@ Usage
     * __currency__: [str] __default='PHP'__ Object containing additional info you want to include in transaction
     * __info__: [list] Object containing additional info you want to include in transaction
     
+    Returns:
+    * transfer = FundTransfer object. Check models.py
+    * message = Response message
         
             sample_info = [
                 {
@@ -74,5 +77,54 @@ Usage
                     "value": "Custom Value"
                 }
             ]        
+
+2. **Unionbank Partner Account InstaPay Transfer**
+
+    **partner_instapay_fund_transfer**
+    
+        from django_unionbank.api.instapay.partner_instapay_fund_transfer
+        
+        transfer, message = partner_instapay_fund_transfer(token, data)
+
+    Parameters:
+    
+    * __token__: [str] Partner access token you can retrieve using **get_partner_token** method
+    * __data__: [list] Information regarding transfer to be made in the following prescribed format
+    
+    Returns:
+    * transfer = FundTransfer object. Check models.py
+    * message = Response message
+        
+        data = {
+            'sender_name': <[str] SENDER NAME>,
+            'sender_address': {
+                    "line1": <[str]>,
+                    "line2": <[str]>,
+                    "city": <[str]>,
+                    "province": <[str]>,
+                    "zipCode": <[str]>,
+                    "country": <[str]>
+                },
+            'beneficiary_account': <[str] RECIPIENT ACCOUNT NUMBER>,
+            'beneficiary_name': <[str] RECIPIENT ACCOUNT NAME>,
+            'beneficiary_address': {
+                    "line1": <[str]>,
+                    "line2": <[str]>,
+                    "city": <[str]>,
+                    "province": <[str]>,
+                    "zipCode": <[str]>,
+                    "country": <[str]>
+                },
+            'remittance_amount': <[str/decimal] TRANSFER AMOUNT>,
+            'remittance_bank': <[int] InstaPay bank code - see "update_instapay_banks" method for list of valid codes>
+            'remittance_purpose': <1001 or 1002 or 1003>,
+            'remittance_instructions': <[str] Insstructions here>
+        }
+    
+    
+    
+          
+        
+          
         
 
