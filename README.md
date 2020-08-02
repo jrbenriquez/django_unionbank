@@ -42,6 +42,13 @@ Usage
 1. **Unionbank Partner Account to Unionbank Account Fund Transfer**
 
     **partner_funds_transfer**
+    
+        from django_unionbank.api.identity.partner_funds_transfer
+        
+        partner_funds_transfer(token, account_number, amount, remarks="Partner Payout")
+
+    Parameters:
+    
     * __token__: [str] Partner access token you can retrieve using **get_partner_token** method
     * __account_number__: [str] Valid Unionbank Account Number
     * __remarks__: [str] Remarks for the specific transaction
@@ -66,13 +73,6 @@ Usage
                     "name": "Custom Info",
                     "value": "Custom Value"
                 }
-            ]
-
-Usage:
-  
-        from django_unionbank.api.identity.partner_funds_transfer
-        
-        partner_funds_transfer(token, account_number, amount, remarks="Partner Payout")
-        
+            ]        
         
 
