@@ -223,9 +223,9 @@ Calling these methods allows you to save all partner banks available to the data
         record_count = total record/activity count in account
         
     
-    from django_unionbank.api.identity import get_last_running_balance
+        from django_unionbank.api.identity import get_last_running_balance
     
-    balance, records, record_count = get_last_running_balance()
+        balance, records, record_count = get_last_running_balance()
        
     
           
