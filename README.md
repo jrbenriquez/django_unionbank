@@ -37,6 +37,24 @@ Quick Start
 
 Usage
 -----
+
+#### Partner Authentication
+
+1. **UnionBank Partner Authentication**
+
+    **get_partner_token**
+    
+        from django_unionbank.api.partner_authentication import get_partner_token
+        
+        token = get_partner_token(scope)
+        
+    Parameters:
+    
+    * __scope__: [str] Space separated OAuth2 scopes. See https://developer.unionbankph.com/reference#tag/OAuth2-Scopes for complete list of scopes
+
+    Returns:
+    token = [str] Online partner access token
+
 #### Partner Transfers
 
 1. **Unionbank Partner Account to Unionbank Account Fund Transfer**
