@@ -49,7 +49,7 @@ def update_instapay_banks():
             )
             logger.info("{} Created".format(ipy_bank.name))
     logger.info('Instapay Receiving Banks List Updating Done!')
-    return True
+    return response['records']
 
 
 def verify_single_instapay_transaction(reference_id):

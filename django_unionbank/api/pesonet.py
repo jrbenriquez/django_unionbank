@@ -46,7 +46,7 @@ def update_pesonet_banks():
             )
             logger.info("{} Created".format(pso_bank.name))
     logger.info('PESONet Receiving Banks List Updating Done!')
-    return True
+    return response['records']
 
 
 def verify_single_pesonet_transaction(reference_id):

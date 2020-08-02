@@ -195,7 +195,38 @@ Usage
                 }
             }
     
+
+## Instapay and PESONet partner banks
+
+- **update_instapay_banks** and **update_pesonet_banks**
     
+    Returns: list of partner banks for the respective service
+        
+Calling these methods allows you to save all partner banks available to the database mapped via the InstapayBank and PESONetBank models respectively
+
+    from django_unionbank.api.instapay import update_instapay_banks
+    from django_unionbank.api.instapay import update_pesonet_banks
+    
+    instapay_bank_list = update_instapay_banks()
+    pesonet_bank_list = update_pesonet_banks()
+    
+    # model classes available in: django_unionbank.models.py
+    
+
+## Partner Account Balance
+
+- **get_last_running_balance**
+
+    Returns:
+        balance = Remaining Balance on the account
+        records = last 10 activity/transaction records
+        record_count = total record/activity count in account
+        
+    
+    from django_unionbank.api.identity import get_last_running_balance
+    
+    balance, records, record_count = get_last_running_balance()
+       
     
           
         
