@@ -1,12 +1,12 @@
 
 # django_unionbank
 
-Django Unionbank is the library for easily integrating and consuming the Unionbank of the Philippines API with your Django Application. As of now this has been used in production for Partner Accounts(Corporate) Fund Transfers (UBP, Instapay, PESOnet) and will eventually add Customer Account services as well. Codebase is functioning but still for standard refactoring, testing and packaging for PIP :)
+Django Unionbank is the library for easily integrating and consuming the Unionbank of the Philippines API with your Django Application. As of now this has been used in production for Partner Accounts(Corporate) Fund Transfers (UBP, Instapay, PESOnet) and will eventually add Customer Account services as well. Codebase is functioning but still currently for standard refactoring/development and testing :)
 
 Quick Start
 -----------
 
-0. To install, use pip::
+0. To install, use pip:
 
         pip install django_unionbank
 
