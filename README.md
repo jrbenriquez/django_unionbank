@@ -54,6 +54,7 @@ Usage
     * __remarks__: [str] Remarks for the specific transaction
     * __amount__:[str/decimal] Amount to transfer
     * __currency__: [str] __default='PHP'__ Object containing additional info you want to include in transaction
+    * __reference_id__: [str] If not provided, package has default id generator (UBPXXXX, IPYXXXX, PSOXXXX)
     * __info__: [list] Object containing additional info you want to include in transaction
     
     Returns:
@@ -90,9 +91,10 @@ Usage
     
     * __token__: [str] Partner access token you can retrieve using **get_partner_token** method
     * __data__: [list] Information regarding transfer to be made in the following prescribed format
+    * __reference_id__: [str] If not provided, package has default id generator (UBPXXXX, IPYXXXX, PSOXXXX)
     
     Returns:
-    * transfer = FundTransfer object. Check models.py
+    * transfer = FundTransfer object. **Check models.py
     * message = Response message
         
             data = {
@@ -116,9 +118,63 @@ Usage
                         "country": <[str]>
                     },
                 'remittance_amount': <[str/decimal] TRANSFER AMOUNT>,
-                'remittance_bank': <[int] InstaPay bank code - see "update_instapay_banks" method for list of valid codes>
+                'remittance_bank': <[int] InstaPay bank code - see "update_instapay_banks" method for data of valid bank with codes>
                 'remittance_purpose': <1001 or 1002 or 1003>,
-                'remittance_instructions': <[str] Insstructions here>
+                'remittance_instructions': <[str] Optional Instructions/Remarks here>
+            }
+
+
+3. **Unionbank Partner Account PESONet Transfer**
+
+    **partner_pesonet_fund_transfer**
+    
+        from django_unionbank.api.pesonet.partner_pesonet_fund_transfer
+        
+        transfer, message = partner_pesonet_fund_transfer(token, data)
+
+    Parameters:
+    
+    * __token__: [str] Partner access token you can retrieve using **get_partner_token** method
+    * __data__: [list] Information regarding transfer to be made in the following prescribed format
+    * __reference_id__: [str] If not provided, package has default id generator (UBPXXXX, IPYXXXX, PSOXXXX)
+    
+    Returns:
+    * transfer = FundTransfer object. **Check models.py
+    * message = Response message
+        
+            data = {
+                'senderRefId': <[str] Reference ID here]>,
+                "tranRequestDate": <[str] Datetime ISO Format (i.e. datetime.now().isoformat()[:-3]>,
+                "sender": {
+                    "name": <[str] Sender Name]>,
+                    "address": {
+                                "line1": <[str]>,
+                                "line2": <[str]>,
+                                "city": '<[str]>',
+                                "province": <[str]>,
+                                "zipCode": <[str]>,
+                                "country": <[str]>
+                    }
+                },
+                "beneficiary": {
+                    "accountNumber": <str> RECIPIENT ACCOUNT NUMBER>,
+                    "name": <str> RECIPIENT NAME>,
+                    "address": {
+                                "line1": <[str]>,
+                                "line2": <[str]>,
+                                "city": <[str]>,
+                                "province": <[str]>,
+                                "zipCode": <[str]>,
+                                "country": <[str]>
+                    }
+                },
+                "remittance": {
+                    "amount": <[str] representation of amount with 2 decimal places>>,
+                    "currency": <[str] 'PHP'>,
+                    "receivingBank": <[int] InstaPay bank code - see "update_pesonet_banks" method for data of valid banks with codes>,
+                    "purpose": <1001, 1002, 1003>,
+                    "instructions": <[str] Optional Instructions/Remarks here>
+                }
             }
     
     
