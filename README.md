@@ -38,7 +38,7 @@ Quick Start
 Usage
 -----
 
-#### Partner Authentication
+## Partner Authentication
 
 1. **UnionBank Partner Authentication**
 
@@ -55,7 +55,7 @@ Usage
     Returns:
     token = [str] Online partner access token
 
-#### Partner Transfers
+## Partner Transfers
 
 1. **Unionbank Partner Account to Unionbank Account Fund Transfer**
 
