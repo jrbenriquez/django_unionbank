@@ -95,31 +95,31 @@ Usage
     * transfer = FundTransfer object. Check models.py
     * message = Response message
         
-        data = {
-            'sender_name': <[str] SENDER NAME>,
-            'sender_address': {
-                    "line1": <[str]>,
-                    "line2": <[str]>,
-                    "city": <[str]>,
-                    "province": <[str]>,
-                    "zipCode": <[str]>,
-                    "country": <[str]>
-                },
-            'beneficiary_account': <[str] RECIPIENT ACCOUNT NUMBER>,
-            'beneficiary_name': <[str] RECIPIENT ACCOUNT NAME>,
-            'beneficiary_address': {
-                    "line1": <[str]>,
-                    "line2": <[str]>,
-                    "city": <[str]>,
-                    "province": <[str]>,
-                    "zipCode": <[str]>,
-                    "country": <[str]>
-                },
-            'remittance_amount': <[str/decimal] TRANSFER AMOUNT>,
-            'remittance_bank': <[int] InstaPay bank code - see "update_instapay_banks" method for list of valid codes>
-            'remittance_purpose': <1001 or 1002 or 1003>,
-            'remittance_instructions': <[str] Insstructions here>
-        }
+            data = {
+                'sender_name': <[str] SENDER NAME>,
+                'sender_address': {
+                        "line1": <[str]>,
+                        "line2": <[str]>,
+                        "city": <[str]>,
+                        "province": <[str]>,
+                        "zipCode": <[str]>,
+                        "country": <[str]>
+                    },
+                'beneficiary_account': <[str] RECIPIENT ACCOUNT NUMBER>,
+                'beneficiary_name': <[str] RECIPIENT ACCOUNT NAME>,
+                'beneficiary_address': {
+                        "line1": <[str]>,
+                        "line2": <[str]>,
+                        "city": <[str]>,
+                        "province": <[str]>,
+                        "zipCode": <[str]>,
+                        "country": <[str]>
+                    },
+                'remittance_amount': <[str/decimal] TRANSFER AMOUNT>,
+                'remittance_bank': <[int] InstaPay bank code - see "update_instapay_banks" method for list of valid codes>
+                'remittance_purpose': <1001 or 1002 or 1003>,
+                'remittance_instructions': <[str] Insstructions here>
+            }
     
     
     
