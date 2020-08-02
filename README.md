@@ -37,4 +37,42 @@ Quick Start
 
 Usage
 -----
-To be written soon.
+#### Partner Transfers
+
+1. **Unionbank Partner Account to Unionbank Account Fund Transfer**
+
+    **partner_funds_transfer**
+    * __token__: [str] Partner access token you can retrieve using **get_partner_token** method
+    * __account_number__: [str] Valid Unionbank Account Number
+    * __remarks__: [str] Remarks for the specific transaction
+    * __amount__:[str/decimal] Amount to transfer
+    * __currency__: [str] __default='PHP'__ Object containing additional info you want to include in transaction
+    * __info__: [list] Object containing additional info you want to include in transaction
+    
+        
+            sample_info = [
+                {
+                    "index": "1",
+                    "name": "Recipient",
+                    "value": "Juan dela Cruz"
+                },
+                {
+                    "index": "2",
+                    "name": "Message",
+                    "value": "Sample Message"
+                },
+                {
+                    "index": "3",
+                    "name": "Custom Info",
+                    "value": "Custom Value"
+                }
+            ]
+
+Usage:
+  
+        from django_unionbank.api.identity.partner_funds_transfer
+        
+        partner_funds_transfer(token, account_number, amount, remarks="Partner Payout")
+        
+        
+

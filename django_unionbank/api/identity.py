@@ -57,9 +57,9 @@ def get_last_running_balance():
     return balance, records, record_count
 
 
-
-def partner_funds_transfer(token, account_number, remarks,
-                           amount, info, currency="PHP"):
+def partner_funds_transfer(token, account_number,
+                           amount, remarks=None, particulars=None,
+                           info=None, currency="PHP"):
     PRODUCT_NAME = 'Partner Unionbank-to-UnionBank Fund Transfer'
     ENDPOINT_URL = '{}{}'.format(
         ub_settings.UNIONBANK_API_BASE_PATH,
@@ -79,20 +79,26 @@ def partner_funds_transfer(token, account_number, remarks,
         'authorization': 'Bearer {}'.format(token),
         'x-partner-id': partner_id
     }
-
+    if not remarks:
+        remarks = ''
+    if not particulars:
+        particulars = ''
     data = {
         "senderRefId": reference_id,
         "tranRequestDate": requested_at,
         "accountNo": account_number,
         "amount": {
-            "currency": "PHP",
+            "currency": currency,
             "value": amount
         },
         "remarks": remarks,
-        "particulars": "Transfer particulars",
+        "particulars": particulars,
         "info": info
     }
-    print(data)
+
+    if info:
+        data["info"] = info
+
     logger.info(data)
     response = requests.post(ENDPOINT_URL, json=data, headers=headers)
     if not response.text:
