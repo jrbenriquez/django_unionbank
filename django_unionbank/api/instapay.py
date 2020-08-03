@@ -78,14 +78,15 @@ def verify_single_instapay_transaction(reference_id):
     return response_data['record']
 
 def partner_instapay_fund_transfer(token, data,
-                                   currency='PHP'):
+                                   reference_id=None, currency='PHP'):
     PRODUCT_NAME = 'Partner Instapay Fund Transfer'
     ENDPOINT_URL = '{}{}'.format(
         ub_settings.UNIONBANK_API_BASE_PATH,
         '/partners/v3/instapay/transfers/single'
     )
 
-    reference_id = generate_ft_reference_id(method='instapay')
+    if not reference_id:
+        reference_id = generate_ft_reference_id(method='instapay')
     requested_at = datetime.now().isoformat()[:-3]
     logger.info('Initiating Instapay Transfer')
     result = None

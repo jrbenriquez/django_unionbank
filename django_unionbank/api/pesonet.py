@@ -112,21 +112,22 @@ def test_only_update_transaction(reference_id, status):
 
 
 def partner_pesonet_fund_transfer(token, data,
-                                   currency='PHP'):
+                                   reference_id=None, currency='PHP'):
     PRODUCT_NAME = 'Partner PESONet Fund Transfer'
     ENDPOINT_URL = '{}{}'.format(
         ub_settings.UNIONBANK_API_BASE_PATH,
         '/partners/v3/pesonet/transfers/single'
     )
 
-    reference_id = generate_ft_reference_id(method='pesonet')
+    if not reference_id:
+        reference_id = generate_ft_reference_id(method='pesonet')
     requested_at = datetime.now().isoformat()[:-3]
     logger.info('Initiating PESONet Transfer')
     result = None
     remarks = None
     # Check validity of sender_data
     sender_name = data.get('sender_name')
-    sender_addres = data.get('sender_address')
+    sender_address = data.get('sender_address')
     # Check validity of beneficiary_data
     beneficiary_account = data.get('beneficiary_account')
     beneficiary_name = data.get('beneficiary_name')
@@ -154,7 +155,7 @@ def partner_pesonet_fund_transfer(token, data,
         "tranRequestDate": requested_at,
         "sender": {
             "name": sender_name,
-            "address": sender_addres
+            "address": sender_address
         },
         "beneficiary": {
             "accountNumber": beneficiary_account,

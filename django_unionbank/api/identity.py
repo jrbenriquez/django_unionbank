@@ -51,22 +51,22 @@ def get_last_running_balance():
         balance = response_data['lastRunningBalance']
     else:
         raise APIException(code='400', detail='Unexpected No Balance Response')
-    print(response_data['lastRunningBalance'])
-    print(record_count)
 
     return balance, records, record_count
 
 
 def partner_funds_transfer(token, account_number,
                            amount, remarks=None, particulars=None,
-                           info=None, currency="PHP"):
+                           info=None, reference_id=None, currency="PHP"):
     PRODUCT_NAME = 'Partner Unionbank-to-UnionBank Fund Transfer'
     ENDPOINT_URL = '{}{}'.format(
         ub_settings.UNIONBANK_API_BASE_PATH,
         '/partners/v3/transfers/single'
     )
     result = None
-    reference_id = generate_ft_reference_id(method='ubp')
+    if not reference_id:
+        reference_id = generate_ft_reference_id(method='ubp')
+
     requested_at = datetime.now().isoformat()[:-3]
 
     partner_id = ub_settings.UNIONBANK_PARTNER_ID

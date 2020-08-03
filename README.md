@@ -196,7 +196,7 @@ Usage
             }
     
 
-## Instapay and PESONet partner banks
+## InstaPay and PESONet partner banks
 
 - **update_instapay_banks** and **update_pesonet_banks**
     
